@@ -3,54 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <title>Happy Birthday ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- For mobile scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      background: #0d0d0d; /* modern black theme */
+      background: #0d0d0d;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
       color: #fff;
       text-align: center;
+      padding: 1rem;
     }
 
     h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      margin-bottom: 1.2rem;
       color: #ff6b6b;
       text-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
       z-index: 2;
       position: relative;
     }
 
-    .btn {
-      padding: 12px 25px;
-      background: #ff6b6b;
-      border: none;
-      border-radius: 30px;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-      z-index: 2;
-      position: relative;
-    }
-
-    .btn:hover {
-      background: #ff4757;
-      transform: scale(1.05);
-    }
-
-    /* Slideshow container */
     .slideshow {
-      display: none;
       width: 100%;
-      max-width: 500px;
+      max-width: 600px;
       position: relative;
       z-index: 2;
     }
@@ -59,62 +40,31 @@
       display: none;
       flex-direction: column;
       align-items: center;
-      position: relative;
     }
 
     .slide img {
       width: 100%;
-      max-width: 100%;
+      height: auto;
       border-radius: 15px;
       box-shadow: 0 0 15px rgba(255,255,255,0.3);
     }
 
     .caption {
-      margin-top: 10px;
-      font-size: 1rem;
+      margin-top: 0.8rem;
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
       color: #ff9f43;
-    }
-
-    /* Side buttons */
-    .prev, .next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      color: white;
-      font-size: 2rem;
-      border: none;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      cursor: pointer;
-      z-index: 3;
-      transition: 0.3s;
-    }
-
-    .prev { left: -60px; }
-    .next { right: -60px; }
-
-    .prev:hover, .next:hover {
-      background: rgba(255,107,107,0.8);
-    }
-
-    /* Adjust buttons for smaller screens */
-    @media (max-width: 600px) {
-      .prev { left: 10px; }
-      .next { right: 10px; }
-      h1 { font-size: 1.5rem; }
-      .caption { font-size: 0.9rem; }
+      padding: 0 0.5rem;
     }
 
     .message {
       display: none;
-      font-size: 1.5rem;
+      font-size: clamp(1.2rem, 3.5vw, 1.8rem);
       margin-top: 20px;
       color: #ff9f43;
       animation: fadeIn 2s ease-in-out forwards;
       z-index: 2;
       position: relative;
+      max-width: 90%;
     }
 
     @keyframes fadeIn {
@@ -122,7 +72,7 @@
       to { opacity: 1; transform: translateY(0);}
     }
 
-    /* Floating Background Hearts */
+    /* Floating hearts */
     .bg-heart {
       position: absolute;
       bottom: -50px;
@@ -130,68 +80,98 @@
       color: rgba(255, 75, 100, 0.7);
       animation: floatHearts 10s linear infinite;
       z-index: 0;
+      pointer-events: none;
     }
 
     @keyframes floatHearts {
       0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
       100% { transform: translateY(-110vh) scale(1.5) rotate(360deg); opacity: 0; }
     }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      background: #ff6b6b;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 20px;
+    }
+    .btn:hover { background: #ff4757; transform: scale(1.05); }
   </style>
 </head>
 <body>
   <h1>🎉 Happy Birthday My Love 🎂</h1>
-  <button class="btn" id="startBtn" onclick="startSlideshow()">Click for Surprise 💖</button>
 
+  <!-- Slideshow -->
   <div class="slideshow" id="slideshow">
-    <!-- Slides with pictures + messages -->
     <div class="slide">
-      <img src="https://via.placeholder.com/400x250?text=Memory+1">
+      <img src="https://via.placeholder.com/600x400?text=Memory+1">
       <div class="caption">This was the day I first realized how lucky I am 💕</div>
     </div>
     <div class="slide">
-      <img src="https://via.placeholder.com/400x250?text=Memory+2">
+      <img src="https://via.placeholder.com/600x400?text=Memory+2">
       <div class="caption">Every smile of yours makes my heart skip a beat 😍</div>
     </div>
     <div class="slide">
-      <img src="https://via.placeholder.com/400x250?text=Memory+3">
+      <img src="https://via.placeholder.com/600x400?text=Memory+3">
       <div class="caption">Thank you for always being by my side 🌹</div>
     </div>
     <div class="slide">
-      <img src="https://via.placeholder.com/400x250?text=Memory+4">
+      <img src="https://via.placeholder.com/600x400?text=Memory+4">
       <div class="caption">You are my safe place, my happiness ❤️</div>
     </div>
     <div class="slide">
-      <img src="https://via.placeholder.com/400x250?text=Memory+5">
+      <img src="https://via.placeholder.com/600x400?text=Memory+5">
       <div class="caption">And today, I celebrate YOU — the most precious gift 🎁</div>
     </div>
-
-    <!-- Controls -->
-    <button class="prev" onclick="prevSlide()">⟨</button>
-    <button class="next" onclick="nextSlide()">⟩</button>
+    <div class="slide">
+      <img src="https://via.placeholder.com/600x400?text=Memory+6">
+      <div class="caption">Your laughter is my favorite melody 🎶</div>
+    </div>
+    <div class="slide">
+      <img src="https://via.placeholder.com/600x400?text=Memory+7">
+      <div class="caption">With you, even ordinary days feel magical ✨</div>
+    </div>
+    <div class="slide">
+      <img src="https://via.placeholder.com/600x400?text=Memory+8">
+      <div class="caption">You are my dream come true 💖</div>
+    </div>
+    <div class="slide">
+      <img src="https://via.placeholder.com/600x400?text=Memory+9">
+      <div class="caption">Every hug feels like home 🏡</div>
+    </div>
+    <div class="slide">
+      <img src="https://via.placeholder.com/600x400?text=Memory+10">
+      <div class="caption">Forever isn't long enough with you 💍</div>
+    </div>
   </div>
+  
 
+  <!-- Final Message -->
   <div class="message" id="message">
     💕 Happy Birthday, my love! 🎂<br>
-    Every picture tells our story… but my favorite chapter is the one with you forever ❤️
+    Every picture tells our story… but my favorite chapter is the one with you forever.  <br>
+    You are my best friend, my soulmate, and my forever. <br>
+    Thank you for making every day brighter. <br>
+    I love you endlessly ❤️
   </div>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="Happy Birthday.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     let slideIndex = 0;
     let slides = document.getElementsByClassName("slide");
     let slideshow = document.getElementById("slideshow");
 
-    // Start slideshow
-    function startSlideshow() {
-      document.getElementById("startBtn").style.display = "none";
-      slideshow.style.display = "block";
-      showSlide(slideIndex);
-    }
-
-    // Show specific slide
+    // Show slides in sequence automatically
     function showSlide(index) {
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
+      for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
       if (index < slides.length) {
         slides[index].style.display = "flex";
       } else {
@@ -200,37 +180,11 @@
       }
     }
 
-    function nextSlide() {
+    function nextSlideAuto() {
       slideIndex++;
       showSlide(slideIndex);
-    }
-
-    function prevSlide() {
-      if (slideIndex > 0) {
-        slideIndex--;
-        showSlide(slideIndex);
-      }
-    }
-
-    // Swipe support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    slideshow.addEventListener("touchstart", e => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-
-    slideshow.addEventListener("touchend", e => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
-
-    function handleSwipe() {
-      if (touchEndX < touchStartX - 50) {
-        nextSlide(); // swipe left
-      }
-      if (touchEndX > touchStartX + 50) {
-        prevSlide(); // swipe right
+      if (slideIndex < slides.length) {
+        setTimeout(nextSlideAuto, 10000); // 4s per slide
       }
     }
 
@@ -248,7 +202,22 @@
       }, 500);
     }
 
-    createHearts();
+    // Start everything on load
+    window.onload = () => {
+      showSlide(slideIndex);
+      setTimeout(nextSlideAuto, 10000);
+      createHearts();
+
+      const music = document.getElementById("bgMusic");
+      music.play().catch(() => {
+        // Fallback button if autoplay blocked
+        let playBtn = document.createElement("button");
+        playBtn.innerText = "▶ Play Music";
+        playBtn.className = "btn";
+        playBtn.onclick = () => { music.play(); playBtn.remove(); };
+        document.body.appendChild(playBtn);
+      });
+    };
   </script>
 </body>
 </html>
