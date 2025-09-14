@@ -34,6 +34,7 @@
       max-width: 600px;
       position: relative;
       z-index: 2;
+      display: none; /* hidden until start */
     }
 
     .slide {
@@ -87,10 +88,26 @@
       0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
       100% { transform: translateY(-110vh) scale(1.5) rotate(360deg); opacity: 0; }
     }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      background: #ff6b6b;
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 20px;
+    }
+    .btn:hover { background: #ff4757; transform: scale(1.05); }
   </style>
 </head>
 <body>
   <h1>🎉 Happy Birthday My Love 🎂</h1>
+
+  <!-- Start Button -->
+  <button id="startBtn" class="btn">Click me!!</button>
 
   <!-- Slideshow -->
   <div class="slideshow" id="slideshow">
@@ -146,7 +163,7 @@
   </div>
 
   <!-- Background Music -->
-  <audio id="bgMusic" autoplay loop>
+  <audio id="bgMusic" loop>
     <source src="Happy Birthday.mp3" type="audio/mpeg">
   </audio>
 
@@ -155,7 +172,6 @@
     let slides = document.getElementsByClassName("slide");
     let slideshow = document.getElementById("slideshow");
 
-    // Show slides in sequence automatically
     function showSlide(index) {
       for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
       if (index < slides.length) {
@@ -170,11 +186,10 @@
       slideIndex++;
       showSlide(slideIndex);
       if (slideIndex < slides.length) {
-        setTimeout(nextSlideAuto, 10000); // 10s per slide
+        setTimeout(nextSlideAuto, 10000);
       }
     }
 
-    // Background hearts
     function createHearts() {
       setInterval(() => {
         let heart = document.createElement("div");
@@ -188,12 +203,18 @@
       }, 500);
     }
 
-    // Start everything on load
-    window.onload = () => {
+    // Start everything after button click
+    document.getElementById("startBtn").addEventListener("click", () => {
+      document.getElementById("startBtn").style.display = "none"; // hide button
+      slideshow.style.display = "block"; // show slideshow
+
       showSlide(slideIndex);
       setTimeout(nextSlideAuto, 10000);
       createHearts();
-    };
+
+      const music = document.getElementById("bgMusic");
+      music.play();
+    });
   </script>
 </body>
 </html>
