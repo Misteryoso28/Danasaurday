@@ -209,7 +209,8 @@
       slideIndex++;
       showSlide(slideIndex);
       if (slideIndex < slides.length) {
-        setTimeout(nextSlideAuto, 10000);
+        let delay = (slideIndex < 3) ? 15000 : 10000;
+        setTimeout(nextSlideAuto, delay);
       }
     }
 
